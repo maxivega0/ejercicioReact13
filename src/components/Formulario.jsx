@@ -1,31 +1,38 @@
 // import React from 'react';
 import { Container } from "react-bootstrap";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import Resultados from './Resultados';
+import Resultados from "./Resultados";
 
 const Formulario = () => {
   const [pais, setPais] = useState("");
   const [ciudad, setCiudad] = useState("");
-  const [clima, setClima] = useState({})
-  const [mostrarClima, setMostrarClima] = useState(false)
-  
-  useEffect(()=> {
+  const [clima, setClima] = useState({});
+  const [mostrarClima, setMostrarClima] = useState(0);
+
+  useEffect(() => {
     // consultarAPI();
-  },[]);
-  const consultarAPI = async () =>{
-    try{
-      const respuesta = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=17bbea418e838f2155c2a01f07874871`);
-      const dato = await respuesta.json()
+  }, []);
+  const consultarAPI = async () => {
+    try {
+      const respuesta = await fetch(
+        `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=17bbea418e838f2155c2a01f07874871`
+      );
+      const dato = await respuesta.json();
       console.log(respuesta);
+      console.log(respuesta.ok);
       console.log(dato);
-      setClima(dato);
-      setMostrarClima(true);
-      console.log(clima);
-    } catch(error){
+      if (respuesta.ok) {
+        setClima(dato);
+        setMostrarClima(1);
+        console.log(clima);
+      }else{
+        setMostrarClima(2);
+      }
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,7 +68,14 @@ const Formulario = () => {
             </Button>
           </Form.Group>
         </Form>
-        {mostrarClima &&  <Resultados clima={clima}></Resultados>}
+        {
+          mostrarClima === 1 && <Resultados clima={clima}></Resultados>
+        }
+        {
+          mostrarClima === 2 && <Alert variant="danger">
+         La localizacion ingresada no existe, intenta nuevamente.
+         </Alert>
+        }
       </Container>
     </div>
   );
