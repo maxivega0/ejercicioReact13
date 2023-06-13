@@ -39,6 +39,7 @@ const Formulario = () => {
   return (
     <div>
       <Container>
+        <h1>Tiempo en el Mundo</h1>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3 row" controlId="ubicacion">
             <Form.Label>Ingrese su pais:</Form.Label>
