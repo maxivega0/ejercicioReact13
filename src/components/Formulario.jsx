@@ -2,14 +2,15 @@
 import { Container } from "react-bootstrap";
 import { Form, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import Resultados from './Resultados';
 
 const Formulario = () => {
   const [pais, setPais] = useState("");
   const [ciudad, setCiudad] = useState("");
-  const [clima, setClima] = useState("")
+  const [clima, setClima] = useState({})
 
   useEffect(()=> {
-    consultarAPI();
+    // consultarAPI();
   },[]);
   const consultarAPI = async () =>{
     try{
@@ -17,9 +18,8 @@ const Formulario = () => {
       const dato = await respuesta.json()
       console.log(respuesta);
       console.log(dato);
-      setClima(dato)
+      setClima(dato);
       console.log(clima);
-
     } catch(error){
       console.log(error);
     }
@@ -31,6 +31,7 @@ const Formulario = () => {
     setPais(e.target.value);
     console.log(pais);
     console.log(ciudad);
+    consultarAPI();
   };
 
   return (
@@ -52,11 +53,12 @@ const Formulario = () => {
               onChange={(e) => setCiudad(e.target.value)}
               value={ciudad}
             />
-            <Button variant="warning" type="submit" onClick={consultarAPI}>
+            <Button variant="warning" type="submit">
               Buscar
             </Button>
           </Form.Group>
         </Form>
+        <Resultados clima={clima}></Resultados>
       </Container>
     </div>
   );
