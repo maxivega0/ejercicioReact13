@@ -40,7 +40,7 @@ const Formulario = () => {
     <div>
       <Container>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="ubicacion">
+          <Form.Group className="mb-3 row" controlId="ubicacion">
             <Form.Label>Ingrese su pais:</Form.Label>
             <Form.Control
               type="text"
@@ -55,7 +55,7 @@ const Formulario = () => {
               onChange={(e) => setCiudad(e.target.value)}
               value={ciudad}
             />
-            <Button variant="warning" type="submit">
+            <Button variant="warning" type="submit" className="my-3">
               Buscar
             </Button>
           </Form.Group>

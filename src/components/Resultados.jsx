@@ -6,16 +6,15 @@ const Resultados = ({ clima }) => {
   return (
     <>
     {console.log(clima)};
-    <h2>{clima.name}</h2>
-    <h2>{clima.clouds.all}</h2>
-    <h2>{clima.main.feels_like}</h2>
-    <h2>{clima.main.humidity}</h2>
-    <h2>{clima.main.pressure}</h2>
-    <h2>{clima.main.temp}</h2>
-    <h2>{clima.main.temp_max}</h2>
-    <h2>{clima.main.temp_min}</h2>
-    <h2>{clima.weather[0].description}</h2>
-    <h2>{clima.weather[0].icon}</h2>
+    <h2>Ciudad: {clima.name}</h2>
+    <h2>Nubes: {clima.clouds.all}</h2>
+    <h2>Sensacion Termica: {parseInt((clima.main.feels_like - 273))}°C</h2>
+    <h2>Humedad: {clima.main.humidity}</h2>
+    <h2>Presion: {clima.main.pressure}</h2>
+    <h2>Temperatura: {parseInt((clima.main.temp - 273.15))}°C</h2>
+    <h2>Temp. Maxima: {parseInt((clima.main.temp_max - 273.15))}°C</h2>
+    <h2>Temp. Minima: {parseInt((clima.main.temp_min - 273.15))}°C</h2>
+    <h2>Clima: {clima.weather[0].description}</h2>
     <h2>{clima.weather[0].main}</h2>
     </>
   );
