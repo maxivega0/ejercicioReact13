@@ -19,13 +19,13 @@ const Formulario = () => {
         `http://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=17bbea418e838f2155c2a01f07874871`
       );
       const dato = await respuesta.json();
-      console.log(respuesta);
-      console.log(respuesta.ok);
-      console.log(dato);
+      // console.log(respuesta);
+      // console.log(respuesta.ok);
+      // console.log(dato);
       if (respuesta.ok) {
         setClima(dato);
         setMostrarClima(1);
-        console.log(clima);
+        // console.log(clima);
       }else{
         setMostrarClima(2);
       }
@@ -38,8 +38,8 @@ const Formulario = () => {
     e.preventDefault();
     setCiudad(e.target.value);
     setPais(e.target.value);
-    console.log(pais);
-    console.log(ciudad);
+    // console.log(pais);
+    // console.log(ciudad);
     consultarAPI();
   };
 
