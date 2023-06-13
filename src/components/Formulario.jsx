@@ -8,7 +8,8 @@ const Formulario = () => {
   const [pais, setPais] = useState("");
   const [ciudad, setCiudad] = useState("");
   const [clima, setClima] = useState({})
-
+  const [mostrarClima, setMostrarClima] = useState(false)
+  
   useEffect(()=> {
     // consultarAPI();
   },[]);
@@ -19,6 +20,7 @@ const Formulario = () => {
       console.log(respuesta);
       console.log(dato);
       setClima(dato);
+      setMostrarClima(true);
       console.log(clima);
     } catch(error){
       console.log(error);
@@ -58,7 +60,7 @@ const Formulario = () => {
             </Button>
           </Form.Group>
         </Form>
-        <Resultados clima={clima}></Resultados>
+        {mostrarClima &&  <Resultados clima={clima}></Resultados>}
       </Container>
     </div>
   );
